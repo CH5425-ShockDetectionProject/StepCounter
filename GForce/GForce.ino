@@ -12,27 +12,20 @@ const char *password = "manupi123";
 
 const int MPU_addr=0x68;
 
-float accX=0;
-float accY=0;
-float accZ=0;
+float accX=0, accY=0, accZ=0, gyroX = 0, gyroY = 0, gyroZ = 0;
 
 /*
 * Connect your controller to WiFi
 */
 bool connectToWiFi() {
   WiFi.begin(ssid, password);
-  int retries = 0;
-  while ((WiFi.status() != WL_CONNECTED) && (retries < 15)) {
-    retries++;
+  while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
-  if (retries > 14) {
-    return false;
-  }
-  else if (WiFi.status() == WL_CONNECTED) {
+  if (WiFi.status() == WL_CONNECTED) {
     Serial.println("IP address: ");
-    Serial.println(WiFi.localIP());
+    Serial.println(WiFi.localIP());       // Send the IP address of the ESP8266 to the computer
   }
   return true;
 }
@@ -50,11 +43,9 @@ void setup() {
 
   if (!mpu.begin()) {
     Serial.println("Failed to find MPU6050 chip");
-    while (1);
   }
 
   Serial.println("MPU6050 Found!");
-
   
   mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
 	mpu.setGyroRange(MPU6050_RANGE_500_DEG);
@@ -67,20 +58,26 @@ sensors_event_t a, g, t;
 int min_width=3;
 int num_digits_after_decimal=3;
 
-char strXAcc[20], strYAcc[20], strZAcc[20], data[60];
+char strXAcc[20], strYAcc[20], strZAcc[20], strXgyro[20], strYgyro[20], strZgyro[20], data[60];
 
 void loop() {
   mpu.getEvent(&a, &g, &t);
 
-
   accX = a.acceleration.x;
   accY = a.acceleration.y;
   accZ = a.acceleration.z;
+  gyroX = g.gyro.x;
+  gyroY = g.gyro.y;
+  gyroZ = g.gyro.z;
   
   dtostrf(accX, min_width, num_digits_after_decimal, strXAcc);
   dtostrf(accY, min_width, num_digits_after_decimal, strYAcc);
   dtostrf(accZ, min_width, num_digits_after_decimal, strZAcc);
+  dtostrf(gyroX, min_width, num_digits_after_decimal, strXgyro);
+  dtostrf(gyroY, min_width, num_digits_after_decimal, strYgyro);
+  dtostrf(gyroZ, min_width, num_digits_after_decimal, strZgyro);
 
-  sprintf(data, "#%s@%s$%s", strXAcc, strYAcc, strZAcc);
-  Serial.println(data);
+  sprintf(data, "#%s@%s$%s&%s!%s^%s", strXAcc, strYAcc, strZAcc, strXgyro, strYgyro, strZgyro);
+  // Serial.println(a.acceleration.x);
+  // Serial.println(data);
 }
