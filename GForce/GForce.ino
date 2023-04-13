@@ -7,7 +7,7 @@
 Adafruit_MPU6050 mpu;
 
 // Wifi parameters
-const char *ssid = "manupi-connect";
+const char *ssid = "manupi";
 const char *password = "manupi123";
 
 // TCP
