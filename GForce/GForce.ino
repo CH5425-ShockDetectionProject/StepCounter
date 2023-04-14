@@ -64,7 +64,7 @@ sensors_event_t a, g, t;
 int min_width=3;
 int num_digits_after_decimal=3;
 
-char strXAcc[20], strYAcc[20], strZAcc[20], strXgyro[20], strYgyro[20], strZgyro[20], data[60];
+char time_elapsed[20], strXAcc[20], strYAcc[20], strZAcc[20], strXgyro[20], strYgyro[20], strZgyro[20], data[140];
 
 void loop() {
   WiFiClient client = server.available();
@@ -75,19 +75,22 @@ void loop() {
     while(client.connected()){      
       // Fetch all sensor data from MPU6050
       mpu.getEvent(&a, &g, &t);
+      unsigned long t = millis();
       accX = a.acceleration.x;
       accY = a.acceleration.y;
       accZ = a.acceleration.z;
       gyroX = g.gyro.x;
       gyroY = g.gyro.y;
       gyroZ = g.gyro.z;
+      sprintf(time_elapsed, "%lu", t);            
       dtostrf(accX, min_width, num_digits_after_decimal, strXAcc);
       dtostrf(accY, min_width, num_digits_after_decimal, strYAcc);
       dtostrf(accZ, min_width, num_digits_after_decimal, strZAcc);
       dtostrf(gyroX, min_width, num_digits_after_decimal, strXgyro);
       dtostrf(gyroY, min_width, num_digits_after_decimal, strYgyro);
       dtostrf(gyroZ, min_width, num_digits_after_decimal, strZgyro);
-      sprintf(data, "%s,%s,%s,%s,%s,%s\n", strXAcc, strYAcc, strZAcc, strXgyro, strYgyro, strZgyro);
+      
+      sprintf(data, "%s,%s,%s,%s,%s,%s,%s\n", strXAcc, strYAcc, strZAcc, strXgyro, strYgyro, strZgyro, time_elapsed);
 
       //Send Data to connected client
       client.write(data);
