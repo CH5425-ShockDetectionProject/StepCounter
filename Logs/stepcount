@@ -1,8 +1,7 @@
-2min 50 sec - walk1.txt ----> 183 steps (first 22 sec - idle)
-1min 45sec - walk2.txt ----> 100 steps (firts 15 sec - idle)
-1 min 20sec - walk3..txt ----> 90 steps 
-1 min 32 sec - walk4.txt -----> 67 steps
+2min 50 sec - walk1.txt ----> 183 steps (first 22 sec - idle) --- predicted = 180 steps - PeakFrequency:345, minMax:3.75
+1min 45sec - walk2.txt ----> 100 steps (firts 15 sec - idle) --- predicted = 100 steps - 346, 3.5
+1 min 20sec - walk3..txt ----> 85 steps --- predicted = 74 steps - 421.42, 4
+1 min 32 sec - walk4.txt -----> 67 steps --- predicted  = 60 steps - 537, 4.13 
 
-2 min 20 sec - jog1.txt  -----> 230 steps  (first 15 sec - idle)
-1 min 52 sec - jog2.txt -----> 159 steps (first 20 sec - idle)
-1 min 21 sec - jog3.txt -----> 80 steps
+2 min 20 sec - jog1.txt  -----> 230 steps  (first 15 sec - idle) --- predicted = 236 - 145.63, 8.9
+1 min 52 sec - jog2.txt -----> 159 steps (first 20 sec - idle) --- predicted = 152 - 124.9, 6.679
