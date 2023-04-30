@@ -12,7 +12,12 @@ An attempt at human activity recognition and a simple but effective solution to 
 
 We flash the ESP8266 with `ESP8266/imu.ino` from the Arduino IDE.
 
-### Data Ingestion
-- Verify that the ESP8266 is connected to the programmed hotspot.
-```ip neigh```
-This command gives us the ip addresses of all connected devices. Find the ip of the ESP8266.
+## Directory Structure
+### ESP8266
+Code to be flashed on ESP8266.
+
+### StepCount
+For details and code to perform data acquisition, processing, step counting, and activity recognition.
+
+### Enclosure Design
+Contains the final enclosure design files
