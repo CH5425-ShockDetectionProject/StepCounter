@@ -10,7 +10,7 @@ done
 
 echo "Filename: $filename"
 
+sed -i 1d $filename
 TOTAL=$(wc -l <$filename)
 echo $TOTAL
-sed -i 1d $filename
 sed -i "$TOTAL d" $filename
