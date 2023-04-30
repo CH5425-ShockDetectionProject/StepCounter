@@ -12,4 +12,5 @@ echo "Filename: $filename"
 
 TOTAL=$(wc -l <$filename)
 echo $TOTAL
+sed -i 1d $filename
 sed -i "$TOTAL d" $filename
