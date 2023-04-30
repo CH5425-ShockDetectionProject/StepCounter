@@ -1,6 +1,6 @@
 # Pedometer Using MPU6050 and ESP8266
 
-An attempt at human activity recognition and a simple but effective solution to count the number of steps taken during the activity.
+An attempt at human activity recognition and a simple but effective solution to count the number of steps taken during the activity using a ESP8266 and MPU6050.
 
 ## Getting Started
 ### Setting Up and Flashing ESP8266
